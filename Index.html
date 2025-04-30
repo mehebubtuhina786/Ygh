@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My IP Address</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; }
+    .box { border: 1px solid #ccc; padding: 20px; margin: 20px auto; max-width: 400px; border-radius: 10px; background: #f9f9f9; }
+    h2 { color: #333; }
+  </style>
+</head>
+<body>
+  <h2>আপনার আইপি এড্রেস</h2>
+  <div class="box">
+    <p><strong>IP:</strong> <span id="ip"></span></p>
+    <p><strong>Country:</strong> <span id="country"></span></p>
+    <p><strong>City:</strong> <span id="city"></span></p>
+    <p><strong>ISP:</strong> <span id="isp"></span></p>
+  </div>
+
+  <script>
+    fetch("https://ipapi.co/json/")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("ip").textContent = data.ip;
+        document.getElementById("country").textContent = data.country_name;
+        document.getElementById("city").textContent = data.city;
+        document.getElementById("isp").textContent = data.org;
+      })
+      .catch(() => {
+        document.querySelector(".box").innerHTML = "ডেটা লোড হচ্ছে না!";
+      });
+  </script>
+</body>
+</html>
